@@ -340,7 +340,7 @@ c. **Loans API**
 * Update a Loan
   * **Endpoint**: `PUT /api/books/{id}`
   * **Deskripsi**: Memperbarui detail pinjaman berdasarkan ID.
-  * **Parameter:
+  * **Parameter**:
     - `id`: ID pinjaman (Long, required)
   * **Body**
     ```bash
@@ -379,7 +379,7 @@ c. **Loans API**
 * Return a Book
   * **Endpoint**: `DELETE /api/loans/{id}`
   * **Deskripsi**: Mengembalikan buku berdasarkan ID pengguna.
-  * **Parameter:
+  * **Parameter**:
     - `userId`: ID pengguna (Long, required)
   * **Contoh**
     ```bash
@@ -394,7 +394,7 @@ c. **Loans API**
 * Check if Book is Overdue
   * **Endpoint**: `GET /api/loans/overdue/{loanId}`
   * **Deskripsi**: Memeriksa apakah pinjaman buku sudah jatuh tempo..
-  * **Parameter:
+  * **Parameter**:
     - `loanId`: ID pinjaman  (Long, required)
   * **Contoh**
     ```bash
