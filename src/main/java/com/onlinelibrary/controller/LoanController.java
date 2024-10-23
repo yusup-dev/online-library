@@ -19,17 +19,19 @@ public class LoanController {
         this.loanService = loanService;
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER')")
     @PostMapping()
     public LoanDto createLoan(@RequestParam Long userId, @RequestParam Long bookId){
         return loanService.createLoan(userId, bookId);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping()
     public List<LoanDto> getAllLoan(){
         return loanService.getAllLoan();
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{id}")
     public ResponseEntity<LoanDto> getLoanById(@PathVariable Long id){
         return ResponseEntity.ok(loanService.getLoanById(id));
@@ -49,11 +51,14 @@ public class LoanController {
         return new ResponseEntity<>("Loan deleted successfully!", HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('USER')")
     @PostMapping("/return")
     public String returnBook(@RequestParam Long userId){
         return loanService.returnBook(userId);
     }
 
+
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/overdue/{loanId}")
     public ResponseEntity<Boolean> isBookOverdue(@PathVariable Long loanId) {
         LoanDto loanDTO = loanService.getLoanById(loanId);
@@ -63,7 +68,4 @@ public class LoanController {
         }
         return ResponseEntity.notFound().build();
     }
-
-
-
 }
