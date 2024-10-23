@@ -402,11 +402,9 @@ c. **Loans API**
     ```
   * **Response** (200 OK):
     ```bash
-    [
-      {
+    {
         "isOverdue": false
-      }
-    ]
+    }
     ```
   
 
