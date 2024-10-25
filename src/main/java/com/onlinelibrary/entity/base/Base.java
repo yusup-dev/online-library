@@ -23,6 +23,7 @@ public class Base {
     protected void onCreate() {
         createdAt = LocalDateTime.now();
     }
+
     @PreUpdate
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();

@@ -3,8 +3,8 @@ package com.onlinelibrary.exception;
 import org.springframework.http.HttpStatus;
 
 public class LibraryAPIException extends RuntimeException{
-    private HttpStatus status;
-    private String message;
+    private final HttpStatus status;
+    private final String message;
 
     public LibraryAPIException(HttpStatus status, String message) {
         this.status = status;
@@ -15,10 +15,6 @@ public class LibraryAPIException extends RuntimeException{
         super(message);
         this.status = status;
         this.message = message1;
-    }
-
-    public HttpStatus getStatus() {
-        return status;
     }
 
     @Override

@@ -122,7 +122,7 @@ public class LoanServiceImpl implements LoanService {
         book.setAvailable(true);
         bookRepository.save(book);
 
-        return "Book returned successfully!";
+        return "Book returned successfully!.";
     }
 
     @Override

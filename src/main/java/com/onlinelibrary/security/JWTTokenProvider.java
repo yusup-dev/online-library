@@ -25,7 +25,6 @@ public class JWTTokenProvider {
     @Value("${app-jwt-expiration-milliseconds}")
     private long jwtExpirationDate;
 
-    // generate JWT token
     public String generateToken(Authentication authentication){
 
         String username = authentication.getName();
@@ -48,7 +47,6 @@ public class JWTTokenProvider {
         return Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtSecret));
     }
 
-    // get username from JWT token
     public String getUsername(String token){
 
         return Jwts.parser()
@@ -59,7 +57,6 @@ public class JWTTokenProvider {
                 .getSubject();
     }
 
-    // validate JWT token
     public boolean validateToken(String token){
         try{
             Jwts.parser()
@@ -74,7 +71,7 @@ public class JWTTokenProvider {
         }catch (UnsupportedJwtException unsupportedJwtException){
             throw new LibraryAPIException(HttpStatus.BAD_REQUEST, "Unsupported JWT token");
         }catch (IllegalArgumentException illegalArgumentException){
-            throw new LibraryAPIException(HttpStatus.BAD_REQUEST, "Jwt claims string is null or empty");
+            throw new LibraryAPIException(HttpStatus.BAD_REQUEST, "JWT claims string is null or empty");
         }
     }
 }

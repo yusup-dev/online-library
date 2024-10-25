@@ -4,6 +4,8 @@ import com.onlinelibrary.dto.JWTAuthResponse;
 import com.onlinelibrary.dto.LoginDto;
 import com.onlinelibrary.dto.RegisterDto;
 import com.onlinelibrary.service.AuthService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,21 +17,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/auth")
 public class AuthController {
 
-    final private AuthService authService;
+    private final AuthService authService;
 
     public AuthController(AuthService authService) {
         this.authService = authService;
     }
 
-    @PostMapping(value = {"/login", "/signin"})
-    public ResponseEntity<JWTAuthResponse> login(@RequestBody LoginDto loginDto) {
+    @PostMapping("/login")
+    public ResponseEntity<JWTAuthResponse> login(@RequestBody @Valid LoginDto loginDto) {
         JWTAuthResponse jwtAuthResponse = authService.login(loginDto);
-
         return ResponseEntity.ok(jwtAuthResponse);
     }
 
-    @PostMapping(value = {"/register", "/signup"})
-    public ResponseEntity<String> register(@RequestBody RegisterDto registerDto){
+    @PostMapping("/register")
+    public ResponseEntity<String> register(@RequestBody @Valid RegisterDto registerDto) {
         String response = authService.register(registerDto);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }

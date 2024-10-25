@@ -10,8 +10,10 @@ import com.onlinelibrary.repository.RoleRepository;
 import com.onlinelibrary.repository.UserRepository;
 import com.onlinelibrary.security.JWTTokenProvider;
 import com.onlinelibrary.service.AuthService;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -44,32 +46,26 @@ public class AuthServiceImpl implements AuthService {
         this.jwtTokenProvider = jwtTokenProvider;
     }
 
-
     @Override
     public JWTAuthResponse login(LoginDto loginDto) {
-        // Authenticate the user
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginDto.getEmail(), loginDto.getPassword()
                 )
         );
 
-        // Set authentication in the context
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        // Generate JWT token
         String token = jwtTokenProvider.generateToken(authentication);
 
-        // Get the role from the Authentication object
         String role = authentication.getAuthorities().stream()
                 .findFirst()
                 .get()
                 .getAuthority();
 
-        // Return both the token and the role
         JWTAuthResponse jwtAuthResponse = new JWTAuthResponse();
         jwtAuthResponse.setAccessToken(token);
-        jwtAuthResponse.setRole(role);  // Set the role
+        jwtAuthResponse.setRole(role);
 
         return jwtAuthResponse;
     }
@@ -79,9 +75,16 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public String register(RegisterDto registerDto) {
 
-        // add check for email exists in database
         if(userRepository.existsByEmail(registerDto.getEmail())){
             throw  new LibraryAPIException(HttpStatus.BAD_REQUEST, "Email is already exists!.");
+        }
+
+        if (!isPasswordValid(registerDto.getPassword())) {
+            throw new LibraryAPIException(HttpStatus.BAD_REQUEST, "Password must be at least 8 alphanumeric characters, contain at least one uppercase letter, and have no special characters.");
+        }
+
+        if(!isEmailValid(registerDto.getEmail())){
+            throw new LibraryAPIException(HttpStatus.BAD_REQUEST, "Invalid email domain. Only accepted domains are gmail.com, hotmail.com.");
         }
 
         User user = new User();
@@ -97,5 +100,13 @@ public class AuthServiceImpl implements AuthService {
         userRepository.save(user);
 
         return "User registered successfully!.";
+    }
+
+    private boolean isPasswordValid(@NotNull String password) {
+        return password.matches("^(?=.*[A-Z])(?=.*[0-9])[A-Za-z0-9]{8,}$") && !password.matches(".*[^A-Za-z0-9].*");
+    }
+
+    private boolean isEmailValid(@NotNull String email) {
+        return email.matches("^[A-Za-z0-9._%+-]+@(gmail\\.com|hotmail\\.com)$");
     }
 }

@@ -1,6 +1,7 @@
 package com.onlinelibrary.controller;
 
 import com.onlinelibrary.dto.LoanDto;
+import com.onlinelibrary.dto.OverdueResponse;
 import com.onlinelibrary.service.LoanService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,7 @@ public class LoanController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping()
-    public List<LoanDto> getAllLoan(){
+    public List<LoanDto> getAllLoans(){
         return loanService.getAllLoan();
     }
 
@@ -57,14 +58,14 @@ public class LoanController {
         return loanService.returnBook(userId);
     }
 
-
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/overdue/{loanId}")
-    public ResponseEntity<Boolean> isBookOverdue(@PathVariable Long loanId) {
+    public ResponseEntity<OverdueResponse> isBookOverdue(@PathVariable Long loanId) {
         LoanDto loanDTO = loanService.getLoanById(loanId);
         if (loanDTO != null) {
             boolean isOverdue = loanService.isBookOverDue(loanId);
-            return ResponseEntity.ok(isOverdue);
+            OverdueResponse response = new OverdueResponse(isOverdue);
+            return ResponseEntity.ok(response);
         }
         return ResponseEntity.notFound().build();
     }

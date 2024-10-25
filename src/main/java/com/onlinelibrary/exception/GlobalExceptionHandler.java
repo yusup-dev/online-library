@@ -29,7 +29,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(LibraryAPIException.class)
-    public ResponseEntity<ErrorDetails> handleBlogAPIException(LibraryAPIException exception,
+    public ResponseEntity<ErrorDetails> handleOnlineLibraryAPIException(LibraryAPIException exception,
                                                                WebRequest webRequest){
         ErrorDetails errorDetails = new ErrorDetails(new Date(), exception.getMessage(),
                 webRequest.getDescription(false));
