@@ -167,6 +167,15 @@ INSERT INTO `users_roles` VALUES
 (5,1),
 (2,2);
 ```
+Catatan : Untuk Tabel **role** dan **user dengan role admin** harus insert langsung didatabase nya:
+```bash
+INSERT INTO `roles` VALUES 
+(1,'2024-10-22 22:06:57.000000','2024-10-22 22:07:01.000000','ROLE_USER'),
+(2,'2024-10-23 00:07:33.000000','2024-10-23 00:07:36.000000','ROLE_ADMIN');
+
+INSERT INTO `users` VALUES 
+(1,'2024-10-23 00:09:02.000000','2024-10-23 00:09:07.000000','admin@gmail.com','Admin','$2a$10$Ndnur1kRXBcLc74hcA06cutKkMKNN3sILazORIlsFz6wcxVuueSp.'),
+```
 b. **Mengimpor SQL Dump**
 Setelah menyimpan file dump, gunakan perintah berikut untuk mengimpornya ke database:
 ```bash
@@ -178,7 +187,8 @@ Aplikasi ini menyediakan beberapa endpoint REST API untuk mengelola buku, penggu
 a. **Books API**
 * Get All Books
   * **Endpoint**: `GET /api/books`
-  * **Deskripsi**:Mengambil semua buku yang tersedia di perpustakaan
+  * **Otorisasi**: ADMIN & USER
+  * **Deskripsi**: Mengambil semua buku yang tersedia di perpustakaan
   * **Contoh**
     ```bash
     curl -X GET http://localhost:8080/api/books
@@ -196,6 +206,7 @@ a. **Books API**
     ```
 * Get Book by ID
   * **Endpoint**: `GET /api/books/{id}`
+  * **Otorisasi**: ADMIN & USER
   * **Deskripsi**: Mengambil detail buku berdasarkan ID.
   * **Contoh**
     ```bash
@@ -213,6 +224,7 @@ a. **Books API**
     ```
 * Add a New Book
   * **Endpoint**: `POST /api/books`
+  * **Otorisasi**: ADMIN
   * **Deskripsi**: Menambahkan buku baru ke perpustakaan.
   * **Body**
     ```bash
@@ -231,6 +243,7 @@ a. **Books API**
     ```
 * Update a Book
   * **Endpoint**: `PUT /api/books/{id}`
+  * **Otorisasi**: ADMIN
   * **Deskripsi**: Memperbarui data buku berdasarkan ID.
   * **Body**
     ```bash
@@ -249,6 +262,7 @@ a. **Books API**
     ```
 * Delete a Book
   * **Endpoint**: `DELETE /api/books/{id}`
+  * **Otorisasi**: ADMIN
   * **Deskripsi**: Menghapus buku berdasarkan ID.
   * **Contoh**
     ```bash
@@ -258,6 +272,7 @@ b. **Authentication API**
 * Login
   * **Endpoint**: `POST /api/auth/login`
   * **Deskripsi**: Mendapatkan token JWT untuk autentikasi pengguna.
+  * **Otorisasi**: ADMIN dan USER
   * **Body**
     ```bash
     {
@@ -279,9 +294,32 @@ b. **Authentication API**
       "role": "ROLE_ADMIN"
     }
     ```
+* Register
+  * **Endpoint**: `POST /api/auth/Register`
+  * **Deskripsi**: Daftar sebagai pengguna.
+  * **Otorisasi**: USER
+  * **Body**
+    ```bash
+    {
+      "name": "Yusup"
+      "email": "yusup@gmail.com",
+      "password": "Password123"
+    }
+    ```
+  * **Contoh**
+    ```bash
+    curl -X POST http://localhost:8080/api/auth/login \
+    -H "Content-Type: application/json" \
+    -d '{"name": "Yusup", "email": "yusup@gmail.com", "password": "Password123"}'
+    ```
+  * **Response** (200 OK):
+    ```bash
+    User registered successfully!.
+    ```
 c. **Loans API**
 * Get All Loans
   * **Endpoint**: `POST GET /api/loans`
+  * **Otorisasi**: ADMIN
   * **Deskripsi**: Mengambil daftar semua pinjaman.
   * **Contoh**
     ```bash
@@ -300,6 +338,7 @@ c. **Loans API**
     ```
 * Get Loan by ID
   * **Endpoint**: `POST GET GET /api/loans/{id}`
+  * **Otorisasi**: ADMIN
   * **Deskripsi**: Mengambil detail pinjaman berdasarkan ID..
   * **Parameter**:
     - `id`: ID pinjaman (Long, required)
@@ -319,6 +358,7 @@ c. **Loans API**
     ```
 * Add a New Loan
   * **Endpoint**: `POST POST /api/loans`
+  * **Otorisasi**: USER
   * **Deskripsi**: Membuat pinjaman baru untuk seorang pengguna dan buku tertentu.
   * **Parameter**:
     - `userId`: ID pengguna (Long, required)
@@ -339,6 +379,7 @@ c. **Loans API**
     ```
 * Update a Loan
   * **Endpoint**: `PUT /api/books/{id}`
+  * **Otorisasi**: ADMIN
   * **Deskripsi**: Memperbarui detail pinjaman berdasarkan ID.
   * **Parameter**:
     - `id`: ID pinjaman (Long, required)
@@ -365,6 +406,7 @@ c. **Loans API**
     ```
 * Delete a Loan
   * **Endpoint**: `DELETE /api/loans/{id}`
+  * **Otorisasi**: ADMIN
   * **Deskripsi**: Menghapus pinjaman berdasarkan ID.
   * **Contoh**
     ```bash
@@ -372,12 +414,11 @@ c. **Loans API**
     ```
   * **Response** (200 OK):
     ```bash
-    {
-      "message": "Loan deleted successfully!"
-    }
+    Loan deleted successfully!.
     ```
 * Return a Book
-  * **Endpoint**: `DELETE /api/loans/{id}`
+  * **Endpoint**: `POST /api/loans/{id}`
+  * **Otorisasi**: USER
   * **Deskripsi**: Mengembalikan buku berdasarkan ID pengguna.
   * **Parameter**:
     - `userId`: ID pengguna (Long, required)
@@ -385,14 +426,9 @@ c. **Loans API**
     ```bash
     curl -X POST "http://localhost:8080/api/loans/return?userId=1"
     ```
-  * **Response** (200 OK):
-    ```bash
-    {
-      "message": "Book returned successfully!"
-    }
-    ```
 * Check if Book is Overdue
   * **Endpoint**: `GET /api/loans/overdue/{loanId}`
+  * **Otorisasi**: ADMIN
   * **Deskripsi**: Memeriksa apakah pinjaman buku sudah jatuh tempo..
   * **Parameter**:
     - `loanId`: ID pinjaman  (Long, required)
@@ -403,7 +439,7 @@ c. **Loans API**
   * **Response** (200 OK):
     ```bash
     {
-      "isOverdue": false
+      "overDue": false
     }
     ```
   
