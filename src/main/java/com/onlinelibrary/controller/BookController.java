@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/books")
 public class BookController {
     final private BookService bookService;
@@ -49,5 +50,4 @@ public class BookController {
         bookService.deleteBookById(id);
         return new ResponseEntity<>("Book deleted successfully!", HttpStatus.OK);
     }
-
 }

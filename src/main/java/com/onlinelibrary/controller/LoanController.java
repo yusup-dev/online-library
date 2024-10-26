@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/loans")
 public class LoanController {
 
@@ -21,9 +22,10 @@ public class LoanController {
     }
 
     @PreAuthorize("hasRole('USER')")
-    @PostMapping()
-    public LoanDto createLoan(@RequestParam Long userId, @RequestParam Long bookId){
-        return loanService.createLoan(userId, bookId);
+    @PostMapping
+    public ResponseEntity<LoanDto> createLoan(@RequestParam Long userId, @RequestParam Long bookId) {
+        LoanDto loanDto = loanService.createLoan(userId, bookId);
+        return ResponseEntity.ok(loanDto);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
