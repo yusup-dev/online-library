@@ -36,6 +36,13 @@ public class BookController {
         return ResponseEntity.ok(bookService.getBookById(id));
     }
 
+    @PreAuthorize("hasRole('USER')")
+    @GetMapping("/user/{userId}/loans")
+    public ResponseEntity<List<BookDto>> getBookByUserLoans(@PathVariable Long userId){
+        List<BookDto> books = bookService.getBookByUserLoans(userId);
+        return ResponseEntity.ok(books);
+    }
+
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<BookDto> updateBook(@PathVariable Long id, @RequestBody BookDto bookDto){
