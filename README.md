@@ -167,7 +167,7 @@ INSERT INTO `users_roles` VALUES
 (5,1),
 (2,2);
 ```
-Catatan : Untuk Tabel **role** dan **user dengan role admin** harus insert langsung didatabase nya:
+Catatan : Untuk table **role** dan **user dengan role admin** harus insert langsung didatabase nya:
 ```bash
 INSERT INTO `roles` VALUES 
 (1,'2024-10-22 22:06:57.000000','2024-10-22 22:07:01.000000','ROLE_USER'),
@@ -291,7 +291,8 @@ b. **Authentication API**
     {
       "accessToken": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3Mjk2NDEwOTUsImV4cCI6MTczMDI0NTg5NX0.dY3yN8OaVTgV5QSJN0bzsB6wG4L9mtpd8GF0tIoxv6jH-BGFZz-oOlHJ3g9PuPw5",
       "tokenType": "Bearer",
-      "role": "ROLE_ADMIN"
+      "role": "ROLE_ADMIN",
+      "userId": 6,
     }
     ```
 * Register
@@ -366,16 +367,6 @@ c. **Loans API**
   * **Contoh**
     ```bash
     curl -X POST "http://localhost:8080/api/loans?userId=1&bookId=1"
-    ```
-  * **Body**
-    ```bash
-    {
-      "id": 1,
-      "userId": 2,
-      "bookId": 2,
-      "borrowedAt": [2024,10,23,0,47,4,428308000],
-      "returnDate": [2024,10,23,1,19,48,939721000]
-    }
     ```
 * Update a Loan
   * **Endpoint**: `PUT /api/books/{id}`
