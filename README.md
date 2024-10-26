@@ -291,7 +291,8 @@ b. **Authentication API**
     {
       "accessToken": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3Mjk2NDEwOTUsImV4cCI6MTczMDI0NTg5NX0.dY3yN8OaVTgV5QSJN0bzsB6wG4L9mtpd8GF0tIoxv6jH-BGFZz-oOlHJ3g9PuPw5",
       "tokenType": "Bearer",
-      "role": "ROLE_ADMIN"
+      "role": "ROLE_ADMIN",
+      "userId": 6,
     }
     ```
 * Register
