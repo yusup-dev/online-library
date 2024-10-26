@@ -58,6 +58,11 @@ public class AuthServiceImpl implements AuthService {
 
         String token = jwtTokenProvider.generateToken(authentication);
 
+        String email = loginDto.getEmail();
+
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new LibraryAPIException(HttpStatus.NOT_FOUND, "User not found"));
+
         String role = authentication.getAuthorities().stream()
                 .findFirst()
                 .get()
@@ -66,9 +71,11 @@ public class AuthServiceImpl implements AuthService {
         JWTAuthResponse jwtAuthResponse = new JWTAuthResponse();
         jwtAuthResponse.setAccessToken(token);
         jwtAuthResponse.setRole(role);
+        jwtAuthResponse.setUserId(user.getId());
 
         return jwtAuthResponse;
     }
+
 
 
 
