@@ -367,16 +367,6 @@ c. **Loans API**
     ```bash
     curl -X POST "http://localhost:8080/api/loans?userId=1&bookId=1"
     ```
-  * **Body**
-    ```bash
-    {
-      "id": 1,
-      "userId": 2,
-      "bookId": 2,
-      "borrowedAt": [2024,10,23,0,47,4,428308000],
-      "returnDate": [2024,10,23,1,19,48,939721000]
-    }
-    ```
 * Update a Loan
   * **Endpoint**: `PUT /api/books/{id}`
   * **Otorisasi**: ADMIN
