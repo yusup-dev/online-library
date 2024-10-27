@@ -6,7 +6,7 @@
         <span><strong>Borrower : </strong> {{ loan.user.name }}</span>
         <span><strong>Title Book : </strong> {{ loan.book.title }}</span>
         <span v-if="loan.isOverdue"><strong>Status : </strong> Overdue </span>
-        <span v-else><strong>Status : </strong> {{ loan.returnDate ? 'Ontime' : '' }}</span>
+        <span v-else><strong>Status : </strong> {{ loan.returnDate ? 'Ontime' : 'Book not returned' }}</span>
         <button @click="viewDetails(loan)" class="btn-primary">Detail</button>
       </div>
     </div>

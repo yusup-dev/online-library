@@ -9,7 +9,7 @@
         <span><strong>Return Date :</strong> {{ formatDate(loan.returnDate) || 'Not returned yet' }}</span>
         <span><strong>Returned : </strong> {{ loan.returnDate ? 'Returned' : 'Still on loan' }}</span>
         <span v-if="loan.isOverdue"><strong>Status : </strong> Overdue </span>
-        <span v-else><strong>Status : </strong> {{ loan.returnDate ? 'Ontime' : '' }}</span>
+        <span v-else><strong>Status : </strong> {{ loan.returnDate ? 'Ontime' : 'Book not returned' }}</span>
       </div>
       <div v-else>
         <p>Loading loan details...</p>
