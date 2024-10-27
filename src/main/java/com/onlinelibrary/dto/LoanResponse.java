@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoanDto {
+public class LoanResponse {
     private Long id;
     private Long userId;
     private Long bookId;

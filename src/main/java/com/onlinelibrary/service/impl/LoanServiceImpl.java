@@ -1,6 +1,8 @@
 package com.onlinelibrary.service.impl;
 
+import com.onlinelibrary.dto.BookDto;
 import com.onlinelibrary.dto.LoanDto;
+import com.onlinelibrary.dto.UserResponse;
 import com.onlinelibrary.entity.Book;
 import com.onlinelibrary.entity.Loan;
 import com.onlinelibrary.entity.User;
@@ -37,7 +39,6 @@ public class LoanServiceImpl implements LoanService {
         this.modelMapper = modelMapper;
     }
 
-    @Override
     public LoanDto createLoan(Long userId, Long bookId) {
         Optional<Loan> activeLoan = loanRepository.findByUserIdAndReturnDateIsNull(userId);
         if (activeLoan.isPresent()) {
@@ -47,13 +48,9 @@ public class LoanServiceImpl implements LoanService {
         Book book = bookRepository.findByIdAndAvailable(bookId, true)
                 .orElseThrow(() -> new ResourceNotFoundException("Book is not available for borrowing ", "id", bookId));
 
-        LoanDto loanDto = new LoanDto();
+        Loan loan = new Loan();
         LocalDateTime borrowedAt = LocalDateTime.now();
-        loanDto.setBorrowedAt(borrowedAt);
-        loanDto.setUserId(userId);
-        loanDto.setBookId(bookId);
-
-        Loan loan = mapToEntity(loanDto);
+        loan.setBorrowedAt(borrowedAt);
 
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with id : ", "id", userId));
@@ -65,7 +62,17 @@ public class LoanServiceImpl implements LoanService {
         book.setAvailable(false);
         bookRepository.save(book);
 
-        return mapToDTO(loan);
+        LoanDto loanDto = new LoanDto();
+        loanDto.setId(loan.getId());
+        loanDto.setUserId(loan.getUser().getId());
+        loanDto.setBookId(loan.getBook().getId());
+        loanDto.setBorrowedAt(loan.getBorrowedAt());
+        loanDto.setReturnDate(loan.getReturnDate());
+
+        loanDto.setUser(new UserResponse(user.getName(), user.getEmail()));
+        loanDto.setBook(new BookDto(book.getId(), book.getImageUrl(),book.getTitle(), book.getAuthor()));
+
+        return loanDto;
     }
 
 
@@ -138,9 +145,5 @@ public class LoanServiceImpl implements LoanService {
 
     private LoanDto mapToDTO(Loan loan){
         return modelMapper.map(loan, LoanDto.class);
-    }
-
-    private Loan mapToEntity(LoanDto loanDto){
-        return modelMapper.map(loanDto, Loan.class);
     }
 }

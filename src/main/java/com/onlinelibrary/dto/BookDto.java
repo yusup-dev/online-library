@@ -12,4 +12,11 @@ public class BookDto {
     private String title;
     private String author;
     private boolean available;
+
+    public BookDto(Long id, String imageUrl, String title, String author) {
+        this.id = id;
+        this.imageUrl = imageUrl;
+        this.title = title;
+        this.author = author;
+    }
 }
