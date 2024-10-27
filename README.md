@@ -1,4 +1,4 @@
-# Dokumentasi Proyek Spring Boot - Online Library
+# Dokumentasi Proyek Spring Boot & Vue.js - Online Library
 
 Berikut adalah **dokumentasi lengkap** untuk menjalankan aplikasi Spring Boot, mengimpor data SQL, dan dokumentasi API yang disediakan oleh aplikasi **Online Library**.
 
@@ -222,6 +222,24 @@ a. **Books API**
       "available": true
     }
     ```
+* Get Book by User Loan
+  * **Endpoint**: `GET /api/books/user/{idUser}/loans`
+  * **Otorisasi**: USER
+  * **Deskripsi**: Mengambil detail buku berdasarkan user yang meminjam buku.
+  * **Contoh**
+    ```bash
+    curl -X GET /api/books/user/{idUser}/loans
+    ```
+  * **Response** (200 OK):
+    ```bash
+    {
+      "id": 1,
+      "imageUrl": "https://i.ibb.co.com/QbZQjGc/images-1.jpg",
+      "title": "The Programing",
+      "author": "John OE",
+      "available": false
+    }
+    ```
 * Add a New Book
   * **Endpoint**: `POST /api/books`
   * **Otorisasi**: ADMIN
@@ -328,14 +346,28 @@ c. **Loans API**
     ```
   * **Response** (200 OK):
     ```bash
-    {
-        "id": 1,
-        "userId": 2,
-        "bookId": 2,
-        "borrowedAt": [2024,10,23,0,47,4,428308000],
-        "returnDate": [2024,10,23,1,19,48,939721000]
-    },
-    ...
+    [
+      {
+          "id": 1,
+          "userId": 11,
+          "bookId": 3,
+          "borrowedAt": [2024,10,27,16,45,6,627719000],
+          "returnDate": [2024,10,27,17,35,29,728444000
+          ],
+          "user": {
+              "name": "Muhamad Yusup",
+              "email": "yusup@gmail.com"
+          },
+          "book": {
+              "id": 3,
+              "imageUrl": "https://i.ibb.co.com/gS63Nvf/images.jpg",
+              "title": "Data Structure",
+              "author": "John OE",
+              "available": true
+          }
+      },
+      ...
+    }
     ```
 * Get Loan by ID
   * **Endpoint**: `POST GET GET /api/loans/{id}`
@@ -408,7 +440,7 @@ c. **Loans API**
     Loan deleted successfully!.
     ```
 * Return a Book
-  * **Endpoint**: `POST /api/loans/{id}`
+  * **Endpoint**: `POST /api/loans/return?userId={id}`
   * **Otorisasi**: USER
   * **Deskripsi**: Mengembalikan buku berdasarkan ID pengguna.
   * **Parameter**:
@@ -433,10 +465,53 @@ c. **Loans API**
       "overDue": false
     }
     ```
-  
+## 9. Menjalankan Frontend Vue.js
+* Persiapan Awal
+  Pastikan Anda telah menginstal Node.js dan npm di komputer Anda. Anda dapat memeriksa instalasi dengan perintah berikut:
+  ```bash
+  node -v
+  npm -v
+  ```
+* Navigasi ke Folder Frontend
+  Setelah clone repository berhasil, navigasikan ke folder `frontend` di dalam proyek `onlinelibrary`
+  ```bash
+  cd frontend
+  ```
+* Install Dependencies
+  Install semua dependencies yang diperlukan untuk Vue.js dengan perintah berikut:
+  ```bash
+  npm install
+  ```
+* Menjalankan Proyek
+  ```bash
+  npm run dev
+  ```
+## 10. Design Web (UI)
+* Halaman Register
 
-    
+  ![Screenshot 2024-10-27 184521](https://github.com/user-attachments/assets/7f4d7041-4345-4a3d-83ae-09da0580fced)
+
+* Halaman Login
   
+  ![Screenshot 2024-10-27 184505](https://github.com/user-attachments/assets/0af570b6-1e52-4839-88ec-9c2afe26daa5)
+
+* Halaman User
+
+  ![Screenshot 2024-10-27 184613](https://github.com/user-attachments/assets/9e9aca5c-101a-4944-b3af-7a5c99ca8984)
+
+* Halaman Detail Buku
+
+  ![Screenshot 2024-10-27 184645](https://github.com/user-attachments/assets/fdcca79d-fd04-4620-899e-76971f6bfb86)
+
+* Halaman Admin
+
+  ![Screenshot 2024-10-27 184536](https://github.com/user-attachments/assets/a92d1858-6a33-4a52-a0d1-348d7137c70f)
+
+* Halama Detail Peminjaman
+  
+  ![Screenshot 2024-10-27 185446](https://github.com/user-attachments/assets/9ecec77a-1afd-47f3-a73e-e2947a601414)
+
+
 
 
 
