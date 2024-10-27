@@ -32,16 +32,12 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
 
-        // get JWT token from http request
         String token = getTokenFromRequest(request);
 
-        // validate token
         if(StringUtils.hasText(token) && jwtTokenProvider.validateToken(token)){
 
-            // get username from token
             String username = jwtTokenProvider.getUsername(token);
 
-            // load the user associated with token
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(

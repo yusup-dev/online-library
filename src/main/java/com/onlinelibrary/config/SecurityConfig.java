@@ -47,7 +47,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
-                .cors(Customizer.withDefaults())  // Aktifkan CORS dengan konfigurasi default
+                .cors(Customizer.withDefaults())
                 .authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers(HttpMethod.GET, "/api/**").permitAll()
                                 .requestMatchers("/api/auth/**").permitAll()
