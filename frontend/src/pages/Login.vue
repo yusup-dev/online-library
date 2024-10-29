@@ -11,13 +11,13 @@
           <div class="auth-form-container">
             <form class="auth-form" @submit.prevent="submitLogin">
               <div class="form-group">
-                <label for="email" class="form-label">Email address</label>
-                <input id="email" name="email" type="email" v-model="email" required class="form-control" />
+                <label for="email" class="form-label">Email</label>
+                <input id="email" name="email" type="email" v-model="email" placeholder="Enter your email" required class="form-control" />
               </div>
 
               <div class="form-group">
                 <label for="password" class="form-label">Password</label>
-                <input id="password" name="password" type="password" v-model="password" required class="form-control" />
+                <input id="password" name="password" type="password" v-model="password" placeholder="Enter your password" required class="form-control" />
               </div>
               <div>
                 <button type="submit" class="btn-primary">Sign in</button>

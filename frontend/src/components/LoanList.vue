@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 class="mt-5 mb-3">List of Loans</h3>
+    <h5 class="mt-5 mb-3">List of Loans</h5>
     <div class="loan-grid">
       <div class="loan-container" v-for="loan in combinedLoans" :key="loan.id">
         <span><strong>Borrower : </strong> {{ loan.user.name }}</span>

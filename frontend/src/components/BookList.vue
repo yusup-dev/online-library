@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h5 class="mt-5 mb-3">List of books</h5>
     <div v-if="bookStore.loading">Loading...</div>
     <div v-if="bookStore.error">{{ bookStore.error }}</div>
     <div v-if="bookStore.books.length > 0">

@@ -12,17 +12,17 @@
             <form class="auth-form" @submit.prevent="submitRegister">
               <div class="form-group">
                 <label for="name" class="form-label">Name</label>
-                <input id="name" name="name" type="text" v-model="name" required class="form-control" />
+                <input id="name" name="name" type="text" v-model="name" placeholder="Enter your name" required class="form-control" />
               </div>
 
               <div class="form-group">
                 <label for="email" class="form-label">Email</label>
-                <input id="email" name="email" type="email" v-model="email" required class="form-control" />
+                <input id="email" name="email" type="email" v-model="email" placeholder="Enter your email" required class="form-control" />
               </div>
 
               <div class="form-group">
                 <label for="password" class="form-label">Password</label>
-                <input id="password" name="password" type="password" v-model="password" required class="form-control" />
+                <input id="password" name="password" type="password" v-model="password" placeholder="Enter your password" required class="form-control" />
               </div>
 
               <div>

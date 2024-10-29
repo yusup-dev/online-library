@@ -58,7 +58,6 @@ export const useLoanStore = defineStore('loan', {
             } catch (error) {
                 if (error.response && error.response.status === 401) {
                     console.error("Unauthorized access. Please log in again.");
-                    // Redirect to login page or show an alert
                 }
                 this.error = "Failed to load overdue loans";
                 console.error("Error loading overdue loans:", error);
