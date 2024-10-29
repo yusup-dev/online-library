@@ -167,7 +167,7 @@ INSERT INTO `users_roles` VALUES
 (5,1),
 (2,2);
 ```
-Catatan : Untuk table **role** dan **user dengan role admin** harus insert langsung didatabase nya:
+Catatan : Untuk value table **role** dan **user dengan role admin** harus insert langsung didatabase nya:
 ```bash
 INSERT INTO `roles` VALUES 
 (1,'2024-10-22 22:06:57.000000','2024-10-22 22:07:01.000000','ROLE_USER'),
