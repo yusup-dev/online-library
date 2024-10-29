@@ -489,15 +489,15 @@ c. **Loans API**
 ## 10. Design Web (UI)
 * Halaman Register
 
-![WhatsApp Image 2024-10-29 at 23 14 26](https://github.com/user-attachments/assets/eea1d1a9-be7a-486a-a193-01414ec6ffc9)
+  ![WhatsApp Image 2024-10-29 at 23 14 26](https://github.com/user-attachments/assets/eea1d1a9-be7a-486a-a193-01414ec6ffc9)
 
 * Halaman Login
 
-![WhatsApp Image 2024-10-29 at 23 14 04](https://github.com/user-attachments/assets/06a9a52e-7068-4841-bbca-0031a9554b9b)
+  ![WhatsApp Image 2024-10-29 at 23 14 04](https://github.com/user-attachments/assets/06a9a52e-7068-4841-bbca-0031a9554b9b)
 
 * Halaman User
 
-![WhatsApp Image 2024-10-29 at 23 12 05](https://github.com/user-attachments/assets/bb88354c-c2cd-47e3-9263-5c061738eb98)
+  ![WhatsApp Image 2024-10-29 at 23 12 05](https://github.com/user-attachments/assets/bb88354c-c2cd-47e3-9263-5c061738eb98)
 
 * Halaman Detail Buku
 
@@ -505,11 +505,11 @@ c. **Loans API**
 
 * Halaman Admin
 
-![WhatsApp Image 2024-10-29 at 23 12 47](https://github.com/user-attachments/assets/a01b82e6-4612-45e1-9cd6-7254a3af9c08)
+  ![WhatsApp Image 2024-10-29 at 23 12 47](https://github.com/user-attachments/assets/a01b82e6-4612-45e1-9cd6-7254a3af9c08)
 
 * Halama Detail Peminjaman
   
-![Screenshot 2024-10-27 185446](https://github.com/user-attachments/assets/9ecec77a-1afd-47f3-a73e-e2947a601414)
+  ![Screenshot 2024-10-27 185446](https://github.com/user-attachments/assets/9ecec77a-1afd-47f3-a73e-e2947a601414)
 
 
 
