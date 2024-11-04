@@ -489,15 +489,15 @@ c. **Loans API**
 ## 10. Design Web (UI)
 * Halaman Register
 
-  ![Screenshot 2024-10-27 184521](https://github.com/user-attachments/assets/7f4d7041-4345-4a3d-83ae-09da0580fced)
+  ![WhatsApp Image 2024-10-29 at 23 14 26](https://github.com/user-attachments/assets/eea1d1a9-be7a-486a-a193-01414ec6ffc9)
 
 * Halaman Login
-  
-  ![Screenshot 2024-10-27 184505](https://github.com/user-attachments/assets/0af570b6-1e52-4839-88ec-9c2afe26daa5)
+
+  ![WhatsApp Image 2024-10-29 at 23 14 04](https://github.com/user-attachments/assets/06a9a52e-7068-4841-bbca-0031a9554b9b)
 
 * Halaman User
 
-  ![Screenshot 2024-10-27 184613](https://github.com/user-attachments/assets/9e9aca5c-101a-4944-b3af-7a5c99ca8984)
+  ![WhatsApp Image 2024-10-29 at 23 12 05](https://github.com/user-attachments/assets/bb88354c-c2cd-47e3-9263-5c061738eb98)
 
 * Halaman Detail Buku
 
@@ -505,7 +505,7 @@ c. **Loans API**
 
 * Halaman Admin
 
-  ![Screenshot 2024-10-27 184536](https://github.com/user-attachments/assets/a92d1858-6a33-4a52-a0d1-348d7137c70f)
+  ![WhatsApp Image 2024-10-29 at 23 12 47](https://github.com/user-attachments/assets/a01b82e6-4612-45e1-9cd6-7254a3af9c08)
 
 * Halama Detail Peminjaman
   
