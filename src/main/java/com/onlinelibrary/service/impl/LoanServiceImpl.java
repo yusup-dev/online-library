@@ -75,9 +75,6 @@ public class LoanServiceImpl implements LoanService {
         return loanDto;
     }
 
-
-
-
     @Override
     public List<LoanDto> getAllLoan() {
         List<Loan> loans = loanRepository.findAll();
@@ -141,7 +138,6 @@ public class LoanServiceImpl implements LoanService {
         }
         return false;
     }
-
 
     private LoanDto mapToDTO(Loan loan){
         return modelMapper.map(loan, LoanDto.class);
