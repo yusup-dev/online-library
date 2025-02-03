@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h5 class="my-4">The book you borrowed</h5>
     <div v-if="bookStore.loading">Loading...</div>
     <div class="text-danger" v-if="bookStore.error">{{ bookStore.error }}</div>
     <div v-if="bookStore.bookLoan.length > 0">

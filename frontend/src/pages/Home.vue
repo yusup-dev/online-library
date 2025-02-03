@@ -9,8 +9,12 @@
              <h3>Welcome to the library online</h3>
            </div>
          </div>
-         <div class="borrow-container mt-5">
-            <BookBorrow/>
+
+         <div class="mt-2">
+           <a href="/my-book" class="text-decoration-none text-dark">
+             <i class='bx bx-book'></i>
+             My Book
+           </a>
          </div>
 
          <div class="list-book-container">
@@ -23,7 +27,6 @@
 </template>
 <script setup>
 import BookBorrow from "@/components/BookBorrow.vue";
-import Logout from "@/components/Logout.vue";
 import BookList from "@/components/BookList.vue";
 import Navbar from "@/components/Navbar.vue";
 </script>

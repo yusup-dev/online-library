@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button class="btn-primary" v-if="authStore.isAuthenticated" @click="logout">Logout</button>
+    <button class="btn-primary" v-if="authStore.isAuthenticated" @click="logout"><i class='bx bx-log-out-circle'></i></button>
   </div>
 </template>
 <script>
